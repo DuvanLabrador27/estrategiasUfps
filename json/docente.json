@@ -1,0 +1,7 @@
+{
+    "apellido": "string",
+    "contrasena": "string",
+    "correo": "string",
+    "grupos": null,
+    "nombre": "string"
+  }
