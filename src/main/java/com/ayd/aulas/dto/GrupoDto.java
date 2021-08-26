@@ -10,7 +10,7 @@ public class GrupoDto {
 
     private Long id;
     private String nombre;
-    private AulaDto aula;
+    private MateriaDto aula;
     private DocenteDto docente;
     private EstudianteDto estudiantes;
     private List<EstrategiaDto> estrategias;

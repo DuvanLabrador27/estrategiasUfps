@@ -1,7 +1,7 @@
 package com.ayd.aulas.convertidores;
 
 import com.ayd.aulas.dao.GrupoDao;
-import com.ayd.aulas.dto.AulaResponseDto;
+import com.ayd.aulas.dto.MateriaResponseDto;
 import com.ayd.aulas.entity.MateriaEntity;
 import com.ayd.aulas.entity.GrupoEntity;
 import com.ayd.aulas.excepcion.ExcepcionSinDatos;
@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Component
-public class AulaResponseDtoToAulaEntity {
+public class MateriaResponseDtoToMateriaEntity {
 
     @Autowired
     private GrupoDao grupoDao;
 
-    public MateriaEntity dtoResponseToEntity(AulaResponseDto dto) {
+    public MateriaEntity dtoResponseToEntity(MateriaResponseDto dto) {
         MateriaEntity entity = new MateriaEntity();
         entity.setGrupos(new ArrayList<>());
         entity.setGrupos(new ArrayList<>());

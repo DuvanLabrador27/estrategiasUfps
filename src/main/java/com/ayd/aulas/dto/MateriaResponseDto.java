@@ -5,8 +5,8 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class AulaDto {
+public class MateriaResponseDto {
     private Long id;
     private String nombre;
-    private List<GrupoDto> grupos;
+    private List<Long> grupos;
 }

@@ -1,8 +1,7 @@
 package com.ayd.aulas.controller;
 
-import com.ayd.aulas.dto.AulaDto;
-import com.ayd.aulas.dto.AulaResponseDto;
-import com.ayd.aulas.service.aula.*;
+import com.ayd.aulas.dto.MateriaResponseDto;
+import com.ayd.aulas.service.materia.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,46 +12,46 @@ import java.util.List;
 public class MateriaController {
 
     @Autowired
-    private AulaServiceModificar aulaServiceModificar;
+    private MateriaServiceModificar materiaServiceModificar;
 
     @Autowired
-    private AulaServiceListar aulaServiceListar;
+    private MateriaServiceListar materiaServiceListar;
 
     @Autowired
-    private AulaServiceEliminar aulaServiceEliminar;
+    private MateriaServiceEliminar materiaServiceEliminar;
 
     @Autowired
-    private AulaServiceConsultar aulaServiceConsultar;
+    private MateriaServiceConsulta materiaServiceConsulta;
 
     @Autowired
-    private AulaServiceCrear aulaServiceCrear;
+    private MateriaServiceCrear materiaServiceCrear;
 
     @PostMapping("/crear")
     @ResponseBody
-    public Long crear(@RequestBody AulaResponseDto aulaDto) {
-        return aulaServiceCrear.ejecutar(aulaDto);
+    public Long crear(@RequestBody MateriaResponseDto aulaDto) {
+        return materiaServiceCrear.ejecutar(aulaDto);
     }
 
     @GetMapping("/listar")
     @ResponseBody
-    public List<AulaResponseDto> listar() {
-        return aulaServiceListar.ejecutar();
+    public List<MateriaResponseDto> listar() {
+        return materiaServiceListar.ejecutar();
     }
 
     @GetMapping("/buscar-nombre")
     @ResponseBody
-    public AulaResponseDto buscarNombre(String nombre) {
-        return aulaServiceConsultar.ejecutar(nombre);
+    public MateriaResponseDto buscarNombre(String nombre) {
+        return materiaServiceConsulta.ejecutar(nombre);
     }
 
     @DeleteMapping("/eliminar/{id}")
     public void eliminar(@PathVariable Long id) {
-        aulaServiceEliminar.ejecutar(id);
+        materiaServiceEliminar.ejecutar(id);
     }
 
     @PutMapping("/actualizar")
     @ResponseBody
-    void actualizar(@RequestBody AulaResponseDto aulaDto) {
-        aulaServiceModificar.ejecutar(aulaDto);
+    void actualizar(@RequestBody MateriaResponseDto aulaDto) {
+        materiaServiceModificar.ejecutar(aulaDto);
     }
 }

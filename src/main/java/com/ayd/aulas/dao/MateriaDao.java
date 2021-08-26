@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface AulaDao extends JpaRepository<MateriaEntity, Long> {
+public interface MateriaDao extends JpaRepository<MateriaEntity, Long> {
 
     Optional<MateriaEntity> findByNombre(String nombre);
 }

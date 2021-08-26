@@ -1,6 +1,6 @@
 package com.ayd.aulas.convertidores;
 
-import com.ayd.aulas.dao.AulaDao;
+import com.ayd.aulas.dao.MateriaDao;
 import com.ayd.aulas.dao.DocenteDao;
 import com.ayd.aulas.dao.EstrategiaDao;
 import com.ayd.aulas.dao.EstudianteDao;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class GrupoResponseDtoToGrupoEntity {
 
     @Autowired
-    private AulaDao aulaDao;
+    private MateriaDao materiaDao;
 
     @Autowired
     private DocenteDao docenteDao;
@@ -34,7 +34,7 @@ public class GrupoResponseDtoToGrupoEntity {
         GrupoEntity entity = new GrupoEntity();
         entity.setEstrategias(new ArrayList<>());
         if (responseDto.getAula() > 0) {
-            entity.setAula(aulaDao.findById(responseDto.getAula()).orElseThrow(
+            entity.setAula(materiaDao.findById(responseDto.getAula()).orElseThrow(
                     () -> new ExcepcionSinDatos("No se encontro el aula")
             ));
         } else {
