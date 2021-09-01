@@ -20,7 +20,7 @@ public class MateriaServiceEliminarImpl implements MateriaServiceEliminar {
 
     private void existe(Long id) {
         materiaDao.findById(id).orElseThrow(
-                () -> new ExcepcionSinDatos("El aula a eliminar no existe.")
+                () -> new ExcepcionSinDatos("La materia a eliminar no existe.")
         );
     }
 }

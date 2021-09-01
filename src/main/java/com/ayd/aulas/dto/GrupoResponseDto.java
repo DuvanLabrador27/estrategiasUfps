@@ -10,7 +10,7 @@ public class GrupoResponseDto {
 
     private Long id;
     private String nombre;
-    private Long aula;
+    private List<Long> materias;
     private Long docente;
     private Long estudiantes;
     private List<Long> estrategias;

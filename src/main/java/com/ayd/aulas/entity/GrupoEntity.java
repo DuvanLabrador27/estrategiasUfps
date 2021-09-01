@@ -16,9 +16,6 @@ public class GrupoEntity {
     private Long id;
     private String nombre;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @ToString.Exclude
-    private MateriaEntity aula;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
@@ -30,6 +27,12 @@ public class GrupoEntity {
     )
     @ToString.Exclude
     private EstudianteEntity estudiantes;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "grupos")
+    @ToString.Exclude
+    private List<MateriaEntity> materias;
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,

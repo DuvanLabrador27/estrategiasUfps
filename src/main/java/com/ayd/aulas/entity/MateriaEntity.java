@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "aula")
+@Table(name = "materia")
 public class MateriaEntity {
 
     @Id
@@ -21,11 +21,11 @@ public class MateriaEntity {
     private Long id;
     private String nombre;
 
-    @OneToMany(
-            mappedBy = "aula",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.MERGE
-    )
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.MERGE)
+    @JoinTable(name = "grupo_materia",
+    joinColumns = {@JoinColumn(name = "grupo_id")},
+    inverseJoinColumns = {@JoinColumn(name = "materia_id")})
     private List<GrupoEntity> grupos;
 
 }
