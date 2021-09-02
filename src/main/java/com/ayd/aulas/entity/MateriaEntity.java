@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,10 +21,7 @@ public class MateriaEntity {
     private Long id;
     private String nombre;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    @JoinTable(name = "grupo_materia")
-    @ToString.Exclude
-    private List<GrupoEntity> grupos;
+    @OneToMany(mappedBy = "materia")
+    private List<GrupoMateriaEntity> grupoMateriaEntities;
 
 }
