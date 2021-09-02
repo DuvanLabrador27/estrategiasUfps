@@ -1,6 +1,7 @@
 package com.ayd.aulas.entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,6 +24,7 @@ public class DocenteEntity {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
+    @ToString.Exclude
     private List<GrupoEntity> grupos;
 
 }

@@ -14,19 +14,24 @@ public class GrupoEntityToGrupoResponseDto {
     public static GrupoResponseDto entityToDto(GrupoEntity entity) {
         GrupoResponseDto dto = new GrupoResponseDto();
         dto.setEstrategias(new ArrayList<>());
+        dto.setEstudiantes(new ArrayList<>());
 
         List<Long> materiaDtos = new ArrayList<>();
-        entity.getMaterias().stream().map(
+        entity.getMaterias().forEach(
                 materiaEntity -> materiaDtos.add(
                         materiaEntity.getId()
                 )
         );
+        dto.setMaterias(materiaDtos);
 
         dto.setDocente(Objects.nonNull(entity.getDocente())?entity.getDocente().getId() : 0);
         entity.getEstrategias().forEach(
                 estrategia -> dto.getEstrategias().add(estrategia.getId())
         );
-        dto.setEstudiantes(Objects.nonNull(entity.getEstudiantes())?entity.getEstudiantes().getId() : 0);
+
+        entity.getEstudiantes().forEach(
+                estudiante -> dto.getEstudiantes().add(estudiante.getId())
+        );
         dto.setId(entity.getId());
         dto.setNombre(entity.getNombre());
         return dto;

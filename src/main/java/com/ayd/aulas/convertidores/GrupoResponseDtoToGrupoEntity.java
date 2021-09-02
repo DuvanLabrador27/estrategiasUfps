@@ -6,6 +6,7 @@ import com.ayd.aulas.dao.EstudianteDao;
 import com.ayd.aulas.dao.MateriaDao;
 import com.ayd.aulas.dto.GrupoResponseDto;
 import com.ayd.aulas.entity.EstrategiaEntity;
+import com.ayd.aulas.entity.EstudianteEntity;
 import com.ayd.aulas.entity.GrupoEntity;
 import com.ayd.aulas.entity.MateriaEntity;
 import com.ayd.aulas.excepcion.ExcepcionSinDatos;
@@ -35,9 +36,10 @@ public class GrupoResponseDtoToGrupoEntity {
 
         GrupoEntity entity = new GrupoEntity();
         List<MateriaEntity> materiaEntities = new ArrayList<>();
+        List<EstudianteEntity> estudianteEntities = new ArrayList<>();
         entity.setEstrategias(new ArrayList<>());
         if (responseDto.getMaterias().size() > 0) {
-            responseDto.getMaterias().stream().map(
+            responseDto.getMaterias().forEach(
                     materia -> materiaEntities.add(
                             materiaDao.findById(materia).orElseThrow(
                                     () -> new ExcepcionSinDatos("No se encontro el aula")
@@ -46,7 +48,7 @@ public class GrupoResponseDtoToGrupoEntity {
             );
             entity.setMaterias(materiaEntities);
         } else {
-            entity.setMaterias(null);
+            entity.setMaterias(new ArrayList<>());
         }
         if (responseDto.getDocente() > 0) {
             entity.setDocente(docenteDao.findById(responseDto.getDocente()).orElseThrow(
@@ -55,12 +57,17 @@ public class GrupoResponseDtoToGrupoEntity {
         } else {
             entity.setDocente(null);
         }
-        if (responseDto.getEstudiantes() > 0) {
-            entity.setEstudiantes(estudianteDao.findById(responseDto.getEstudiantes()).orElseThrow(
-                    () -> new ExcepcionSinDatos("No se encontro al estudiante")
-            ));
+        if (responseDto.getEstudiantes().size() > 0) {
+            responseDto.getEstudiantes().forEach(
+                    estudiante -> estudianteEntities.add(
+                            estudianteDao.findById(estudiante).orElseThrow(
+                                    () -> new ExcepcionSinDatos("No se encontro el estudiante: " + estudiante)
+                            )
+                    )
+            );
+            entity.setEstudiantes(estudianteEntities);
         } else {
-            entity.setEstudiantes(null);
+            entity.setEstudiantes(new ArrayList<>());
         }
 
         responseDto.getEstrategias().forEach(

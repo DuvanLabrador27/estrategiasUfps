@@ -20,6 +20,9 @@ public class EstudianteEntity {
     private String correo;
     private String contrasena;
 
-    @OneToMany(mappedBy = "estudiantes")
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    @JoinTable(name = "grupo_estudiante")
+    @ToString.Exclude
     private List<GrupoEntity> grupos;
 }

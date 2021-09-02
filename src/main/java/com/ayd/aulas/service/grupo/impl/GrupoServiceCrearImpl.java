@@ -24,6 +24,7 @@ public class GrupoServiceCrearImpl implements GrupoServiceCrear {
     public Long ejecutar(GrupoResponseDto grupoDto) {
         existo(grupoDto.getNombre());
         GrupoEntity grupoEntity = toGrupoEntity.responseToEntoty(grupoDto);
+        sincronizarDatos(grupoEntity);
         return grupoDao.save(grupoEntity).getId();
     }
 
@@ -32,5 +33,22 @@ public class GrupoServiceCrearImpl implements GrupoServiceCrear {
         if (Objects.nonNull(grupoEntity)) {
             throw new ExcepcionDuplicidad("El grupo ´" + nombre + "' ya existe");
         }
+    }
+
+    private void sincronizarDatos(GrupoEntity grupoEntity) {
+        grupoEntity.getMaterias().forEach(
+                materia ->
+                        materia.getGrupos().add(grupoEntity)
+
+        );
+        grupoEntity.getEstudiantes().forEach(
+                estudiante ->
+                        estudiante.getGrupos().add(grupoEntity)
+
+        );
+        grupoEntity.getEstrategias().forEach(
+                estrategia ->
+                        estrategia.getGrupos().add(grupoEntity)
+        );
     }
 }

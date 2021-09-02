@@ -12,6 +12,6 @@ public class GrupoDto {
     private String nombre;
     private List<MateriaDto> materias;
     private DocenteDto docente;
-    private EstudianteDto estudiantes;
+    private List<EstudianteDto> estudiantes;
     private List<EstrategiaDto> estrategias;
 }

@@ -1,6 +1,7 @@
 package com.ayd.aulas.entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -20,8 +21,7 @@ public class EstrategiaEntity {
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    @JoinTable(name = "grupo_estrategia",
-            joinColumns = {@JoinColumn(name = "grupo_id")},
-            inverseJoinColumns = {@JoinColumn(name = "estrategia_id")})
+    @JoinTable(name = "grupo_estrategia")
+    @ToString.Exclude
     private List<GrupoEntity> grupos;
 }

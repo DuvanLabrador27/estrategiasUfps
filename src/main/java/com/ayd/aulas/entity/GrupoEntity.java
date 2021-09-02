@@ -3,12 +3,21 @@ package com.ayd.aulas.entity;
 import lombok.Data;
 import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.List;
 
 @Data
 @Entity
 @Table(name = "grupo")
+@ToString
 public class GrupoEntity {
 
     @Id
@@ -17,19 +26,20 @@ public class GrupoEntity {
     private String nombre;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @ToString.Exclude
     private DocenteEntity docente;
 
-    @ManyToOne(
+    @ManyToMany(
             fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            mappedBy = "grupos"
     )
     @ToString.Exclude
-    private EstudianteEntity estudiantes;
+    private List<EstudianteEntity> estudiantes;
 
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             mappedBy = "grupos")
     @ToString.Exclude
     private List<MateriaEntity> materias;
@@ -37,10 +47,11 @@ public class GrupoEntity {
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             mappedBy = "grupos")
+    @ToString.Exclude
     private List<EstrategiaEntity> estrategias;
 
-    @Override
-    public String toString() {
-        return "GrupoEntity{}";
-    }
+//    @Override
+//    public String toString() {
+//        return "GrupoEntity{}";
+//    }
 }

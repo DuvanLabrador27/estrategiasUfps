@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,10 +23,9 @@ public class MateriaEntity {
     private String nombre;
 
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.MERGE)
-    @JoinTable(name = "grupo_materia",
-    joinColumns = {@JoinColumn(name = "grupo_id")},
-    inverseJoinColumns = {@JoinColumn(name = "materia_id")})
+            cascade = CascadeType.ALL)
+    @JoinTable(name = "grupo_materia")
+    @ToString.Exclude
     private List<GrupoEntity> grupos;
 
 }
