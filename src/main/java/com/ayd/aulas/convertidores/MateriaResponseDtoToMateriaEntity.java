@@ -18,8 +18,6 @@ public class MateriaResponseDtoToMateriaEntity {
 
     public MateriaEntity dtoResponseToEntity(MateriaResponseDto dto) {
         MateriaEntity entity = new MateriaEntity();
-        entity.setGrupos(new ArrayList<>());
-        entity.setGrupos(new ArrayList<>());
         entity.setId(dto.getId());
         entity.setNombre(dto.getNombre());
         dto.getGrupos().forEach(
@@ -27,8 +25,8 @@ public class MateriaResponseDtoToMateriaEntity {
                     if (idGrupo > 0) {
                         GrupoEntity entityG = this.grupoDao.findById(idGrupo).orElseThrow(
                                 () -> new ExcepcionSinDatos("EL grupo '" + idGrupo + "' no existe.")
-                        );
-                        entity.getGrupos().add(entityG);
+                       );
+
                     }
                 }
         );

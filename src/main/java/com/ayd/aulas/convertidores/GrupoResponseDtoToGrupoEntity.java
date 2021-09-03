@@ -37,7 +37,7 @@ public class GrupoResponseDtoToGrupoEntity {
         GrupoEntity entity = new GrupoEntity();
         List<MateriaEntity> materiaEntities = new ArrayList<>();
         List<EstudianteEntity> estudianteEntities = new ArrayList<>();
-        entity.setEstrategias(new ArrayList<>());
+
         if (responseDto.getMaterias().size() > 0) {
             responseDto.getMaterias().forEach(
                     materia -> materiaEntities.add(
@@ -46,9 +46,9 @@ public class GrupoResponseDtoToGrupoEntity {
                             )
                     )
             );
-            entity.setMaterias(materiaEntities);
+
         } else {
-            entity.setMaterias(new ArrayList<>());
+
         }
         if (responseDto.getDocente() > 0) {
             entity.setDocente(docenteDao.findById(responseDto.getDocente()).orElseThrow(
@@ -65,9 +65,9 @@ public class GrupoResponseDtoToGrupoEntity {
                             )
                     )
             );
-            entity.setEstudiantes(estudianteEntities);
+
         } else {
-            entity.setEstudiantes(new ArrayList<>());
+
         }
 
         responseDto.getEstrategias().forEach(
@@ -76,7 +76,7 @@ public class GrupoResponseDtoToGrupoEntity {
                         EstrategiaEntity estrategiaEntity = estrategiaDao.findById(estrategia).orElseThrow(
                                 () -> new ExcepcionSinDatos("No se encontro la estrategia '" + estrategia + "'.")
                         );
-                        entity.getEstrategias().add(estrategiaEntity);
+
                     }
                 }
         );

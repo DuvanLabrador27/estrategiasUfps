@@ -17,21 +17,13 @@ public class GrupoEntityToGrupoResponseDto {
         dto.setEstudiantes(new ArrayList<>());
 
         List<Long> materiaDtos = new ArrayList<>();
-        entity.getMaterias().forEach(
-                materiaEntity -> materiaDtos.add(
-                        materiaEntity.getId()
-                )
-        );
+
         dto.setMaterias(materiaDtos);
 
         dto.setDocente(Objects.nonNull(entity.getDocente())?entity.getDocente().getId() : 0);
-        entity.getEstrategias().forEach(
-                estrategia -> dto.getEstrategias().add(estrategia.getId())
-        );
 
-        entity.getEstudiantes().forEach(
-                estudiante -> dto.getEstudiantes().add(estudiante.getId())
-        );
+
+
         dto.setId(entity.getId());
         dto.setNombre(entity.getNombre());
         return dto;

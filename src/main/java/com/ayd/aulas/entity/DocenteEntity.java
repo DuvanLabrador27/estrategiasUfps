@@ -13,6 +13,7 @@ public class DocenteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     private String nombre;
     private String apellido;

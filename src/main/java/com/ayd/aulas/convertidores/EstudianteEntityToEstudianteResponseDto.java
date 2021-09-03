@@ -19,9 +19,6 @@ public class EstudianteEntityToEstudianteResponseDto {
         responseDto.setNombre(estudianteEntity.getNombre());
         responseDto.setRepitente(estudianteEntity.isRepitente());
         responseDto.setGrupos(new ArrayList<>());
-        estudianteEntity.getGrupos().forEach(
-                grupo -> responseDto.getGrupos().add(grupo.getId())
-        );
 
         return responseDto;
     }

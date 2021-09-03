@@ -13,6 +13,7 @@ public class EstudianteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     private boolean repitente;
     private String nombre;
@@ -20,9 +21,9 @@ public class EstudianteEntity {
     private String correo;
     private String contrasena;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    @JoinTable(name = "grupo_estudiante")
-    @ToString.Exclude
-    private List<GrupoEntity> grupos;
+    @OneToMany(
+            mappedBy = "estudiante",
+            fetch = FetchType.LAZY
+    )
+    private List<GrupoEstudianteEntity> grupoEstudiante;
 }

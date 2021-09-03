@@ -36,19 +36,19 @@ public class GrupoServiceCrearImpl implements GrupoServiceCrear {
     }
 
     private void sincronizarDatos(GrupoEntity grupoEntity) {
-        grupoEntity.getMaterias().forEach(
-                materia ->
-                        materia.getGrupos().add(grupoEntity)
-
-        );
-        grupoEntity.getEstudiantes().forEach(
-                estudiante ->
-                        estudiante.getGrupos().add(grupoEntity)
-
-        );
-        grupoEntity.getEstrategias().forEach(
-                estrategia ->
-                        estrategia.getGrupos().add(grupoEntity)
-        );
+//        grupoEntity.getMaterias().forEach(
+//                materia ->
+//                        materia.getGrupos().add(grupoEntity)
+//
+//        );
+//        grupoEntity.getEstudiantes().forEach(
+//                estudiante ->
+//                        estudiante.getGrupos().add(grupoEntity)
+//
+//        );
+//        grupoEntity.getEstrategias().forEach(
+//                estrategia ->
+//                        estrategia.getGrupos().add(grupoEntity)
+//        );
     }
 }

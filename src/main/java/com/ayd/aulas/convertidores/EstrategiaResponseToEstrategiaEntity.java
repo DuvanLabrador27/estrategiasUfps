@@ -18,7 +18,7 @@ public class EstrategiaResponseToEstrategiaEntity {
 
     public EstrategiaEntity responseToEntity(EstrategiaResponseDto responseDto) {
         EstrategiaEntity entity = new EstrategiaEntity();
-        entity.setGrupos(new ArrayList<>());
+
         entity.setCreacion(responseDto.getCreacion());
         entity.setDescripcion(responseDto.getDescripcion());
         entity.setId(responseDto.getId());
@@ -29,7 +29,7 @@ public class EstrategiaResponseToEstrategiaEntity {
                         GrupoEntity grupoEntity = grupoDao.findById(idGrupo).orElseThrow(
                                 () -> new ExcepcionSinDatos("No se encontro el grupo ´" + idGrupo + "'.")
                         );
-                        entity.getGrupos().add(grupoEntity);
+
                     }
                 }
         );

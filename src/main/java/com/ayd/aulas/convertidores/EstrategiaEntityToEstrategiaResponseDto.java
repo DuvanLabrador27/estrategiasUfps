@@ -16,9 +16,7 @@ public class EstrategiaEntityToEstrategiaResponseDto{
         responseDto.setCreacion(estrategiaEntity.getCreacion());
         responseDto.setDescripcion(estrategiaEntity.getDescripcion());
         responseDto.setNombre(estrategiaEntity.getNombre());
-        estrategiaEntity.getGrupos().forEach(
-                entity -> responseDto.getGrupos().add(entity.getId())
-        );
+
         return responseDto;
     }
 }

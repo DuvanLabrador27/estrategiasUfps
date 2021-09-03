@@ -37,18 +37,16 @@ public class GrupoEntity {
     )
     private List<GrupoMateriaEntity> grupoMaterias;
 
-    @ManyToMany(
-            fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            mappedBy = "grupos"
+    @OneToMany(
+            mappedBy = "grupo",
+            fetch = FetchType.LAZY
     )
-    @ToString.Exclude
-    private List<EstudianteEntity> estudiantes;
+    private List<GrupoEstudianteEntity> grupoEstudiante;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            mappedBy = "grupos")
-    @ToString.Exclude
-    private List<EstrategiaEntity> estrategias;
+    @OneToMany(
+            mappedBy = "grupo",
+            fetch = FetchType.LAZY
+    )
+    private List<GrupoEstrategiaEntity> grupoEstrategia;
 
 }
