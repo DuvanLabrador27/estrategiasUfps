@@ -1,6 +1,6 @@
 package com.ayd.aulas.entity;
 
-import com.ayd.aulas.entity.compositeKey.GrupoMateriaKey;
+import com.ayd.aulas.entity.compositeKey.GrupoMateriaEstudianteKey;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,13 +15,13 @@ import javax.persistence.Table;
 
 @Entity
 @Data
-@Table(name = "grupo_materia")
+@Table(name = "grupo_materia_estudiante")
 @NoArgsConstructor
 @AllArgsConstructor
-public class GrupoMateriaEntity {
+public class GrupoMateriaEstudianteEntity {
 
     @EmbeddedId
-    GrupoMateriaKey id;
+    GrupoMateriaEstudianteKey id;
 
     @ManyToOne
     @MapsId("grupoId")
@@ -34,4 +34,11 @@ public class GrupoMateriaEntity {
     @JoinColumn(name = "materia_id")
     @ToString.Exclude
     private MateriaEntity materia;
+
+    @ManyToOne
+    @MapsId("estudianteId")
+    @JoinColumn(name = "estudiante_id")
+    @ToString.Exclude
+    private EstudianteEntity estudiante;
+
 }

@@ -3,7 +3,7 @@ package com.ayd.aulas.error;
 import com.ayd.aulas.excepcion.ExcepcionCantidadInsuficiente;
 import com.ayd.aulas.excepcion.ExcepcionConStock;
 import com.ayd.aulas.excepcion.ExcepcionDuplicidad;
-import com.ayd.aulas.excepcion.ExcepcionFinDeMes;
+import com.ayd.aulas.excepcion.ExcepcionErrorJpaRepository;
 import com.ayd.aulas.excepcion.ExcepcionLongitudValor;
 import com.ayd.aulas.excepcion.ExcepcionObjectoNoEncontrado;
 import com.ayd.aulas.excepcion.ExcepcionSinDatos;
@@ -36,7 +36,7 @@ public class ManejadorError extends ResponseEntityExceptionHandler {
         CODIGOS_ESTADO.put(ExcepcionDuplicidad.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
         CODIGOS_ESTADO.put(ExcepcionConStock.class.getSimpleName(), HttpStatus.NOT_ACCEPTABLE.value());
         CODIGOS_ESTADO.put(ExcepcionObjectoNoEncontrado.class.getSimpleName(), HttpStatus.NOT_FOUND.value());
-        CODIGOS_ESTADO.put(ExcepcionFinDeMes.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
+        CODIGOS_ESTADO.put(ExcepcionErrorJpaRepository.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
         CODIGOS_ESTADO.put(ExcepcionCantidadInsuficiente.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
 
         //en caso de tener otra excepcion matricularla aca

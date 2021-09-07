@@ -1,24 +1,21 @@
-package com.ayd.aulas.service.grupoMateria.impl;
+package com.ayd.aulas.service.grupoMateriaEstudiante.impl;
 
 import com.ayd.aulas.dao.GrupoDao;
-import com.ayd.aulas.dao.GrupoMateriaDao;
+import com.ayd.aulas.dao.GrupoMateriaEstudianteDao;
 import com.ayd.aulas.dao.MateriaDao;
 import com.ayd.aulas.dto.MateriaResponseDto;
 import com.ayd.aulas.entity.GrupoEntity;
-import com.ayd.aulas.entity.GrupoMateriaEntity;
+import com.ayd.aulas.entity.GrupoMateriaEstudianteEntity;
 import com.ayd.aulas.entity.MateriaEntity;
-import com.ayd.aulas.entity.compositeKey.GrupoMateriaKey;
 import com.ayd.aulas.excepcion.ExcepcionSinDatos;
-import com.ayd.aulas.service.grupoMateria.EliminarGrupoMateriaService;
+import com.ayd.aulas.service.grupoMateriaEstudiante.ActualizarGrupoMateriaEstrategiaEstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Service
-public class EliminarGrupoMateriaServiceImpl implements EliminarGrupoMateriaService {
+public class ActualizarGrupoMateriaEstrategiaEstudianteServiceImpl implements ActualizarGrupoMateriaEstrategiaEstudianteService {
 
     @Autowired
     private MateriaDao materiaDao;
@@ -27,34 +24,21 @@ public class EliminarGrupoMateriaServiceImpl implements EliminarGrupoMateriaServ
     private GrupoDao grupoDao;
 
     @Autowired
-    private GrupoMateriaDao grupoMateriaDao;
+    private GrupoMateriaEstudianteDao grupoMateriaEstudianteDao;
 
 
     @Override
     public void ejecutar(MateriaResponseDto responseDto) {
         MateriaEntity materiaEntity = existeMateria(responseDto.getId());
         List<GrupoEntity> grupoEntities = existenGrupos(responseDto.getGrupos());
-        List<GrupoMateriaEntity> gruposEliminados = encontrarEliminados(materiaEntity.getGrupoMateriaEntities(), grupoEntities);
-
-        gruposEliminados.forEach(
-                elimanado -> grupoMateriaDao.delete(elimanado)
-        );
-
-        grupoEntities.forEach(
-                (grupo) -> {
-                    GrupoMateriaKey key = new GrupoMateriaKey(grupo.getId(), materiaEntity.getId());
-                    GrupoMateriaEntity grupoMateriaEntity = new GrupoMateriaEntity(key, grupo, materiaEntity);
-                    grupoMateriaDao.save(grupoMateriaEntity);
-                }
-        );
-
+        encontrarEliminados(materiaEntity.getGrupoMateriaEstudiante(), grupoEntities);
+//        actualizarMateria(grupoEntities, materiaEntity);
     }
 
     private MateriaEntity existeMateria(Long materiaId) {
         MateriaEntity existe = materiaDao.findById(materiaId).orElseThrow(
                 () -> new ExcepcionSinDatos("No se encontro la Materia con el id: " + materiaId)
         );
-
         return existe;
     }
 
@@ -66,16 +50,23 @@ public class EliminarGrupoMateriaServiceImpl implements EliminarGrupoMateriaServ
         return gruposList;
     }
 
-    private List<GrupoMateriaEntity> encontrarEliminados(List<GrupoMateriaEntity> gruposViejos, List<GrupoEntity> gruposNuevos) {
-        AtomicReference<List<GrupoMateriaEntity>> listaEliminados = new AtomicReference<>(new ArrayList<>());
+    private void encontrarEliminados(List<GrupoMateriaEstudianteEntity> gruposViejos, List<GrupoEntity> gruposNuevos) {
         gruposViejos.forEach(
                 viejo -> {
                     if (!gruposNuevos.contains(viejo.getGrupo())) {
-                        listaEliminados.get().add(viejo);
+                        grupoMateriaEstudianteDao.delete(viejo);
                     }
-
                 }
         );
-        return listaEliminados.get();
     }
+
+//    private void actualizarMateria(List<GrupoEntity> grupoEntities, MateriaEntity materiaEntity) {
+//        grupoEntities.forEach(
+//                (grupo) -> {
+//                    GrupoMateriaEstrategiaEstudianteKey key = new GrupoMateriaEstrategiaEstudianteKey(grupo.getId(), materiaEntity.getId());
+//                    GrupoMateriaEstrategiaEstudianteEntity grupoMateriaEstrategiaEstudianteEntity = new GrupoMateriaEstrategiaEstudianteEntity(key, grupo, materiaEntity);
+//                    grupoMateriaEstrategiaEstudianteDao.save(grupoMateriaEstrategiaEstudianteEntity);
+//                }
+//        );
+//    }
 }

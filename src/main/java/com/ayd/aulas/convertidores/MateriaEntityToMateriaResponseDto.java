@@ -16,7 +16,7 @@ public class MateriaEntityToMateriaResponseDto {
         dto.setId(entity.getId());
         dto.setNombre(entity.getNombre());
         List<Long> grupos = new ArrayList<>();
-        entity.getGrupoMateriaEntities().forEach(
+        entity.getGrupoMateriaEstudiante().forEach(
                 (grupoMateria) -> {
                     grupos.add(
                             grupoMateria.getGrupo().getId()

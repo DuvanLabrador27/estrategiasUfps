@@ -33,6 +33,12 @@ public class MateriaEntity {
             mappedBy = "materia",
             fetch = FetchType.LAZY
     )
-    private List<GrupoMateriaEntity> grupoMateriaEntities;
+    private List<GrupoMateriaEstudianteEntity> grupoMateriaEstudiante;
+
+    @OneToMany(
+            mappedBy = "materia",
+            fetch = FetchType.LAZY
+    )
+    private List<GrupoMateriaEstrategiaEntity> grupoMateriaEstrategia;
 
 }

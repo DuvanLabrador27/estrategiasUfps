@@ -3,13 +3,11 @@ package com.ayd.aulas.entity;
 import lombok.Data;
 import lombok.ToString;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -35,18 +33,13 @@ public class GrupoEntity {
             mappedBy = "grupo",
             fetch = FetchType.LAZY
     )
-    private List<GrupoMateriaEntity> grupoMaterias;
+    private List<GrupoMateriaEstudianteEntity> grupoMateriaEstudiante;
 
     @OneToMany(
             mappedBy = "grupo",
             fetch = FetchType.LAZY
     )
-    private List<GrupoEstudianteEntity> grupoEstudiante;
+    private List<GrupoMateriaEstrategiaEntity> grupoMateriaEstrategia;
 
-    @OneToMany(
-            mappedBy = "grupo",
-            fetch = FetchType.LAZY
-    )
-    private List<GrupoEstrategiaEntity> grupoEstrategia;
 
 }

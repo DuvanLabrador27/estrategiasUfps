@@ -1,7 +1,6 @@
 package com.ayd.aulas.entity;
 
 import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,5 +24,5 @@ public class EstudianteEntity {
             mappedBy = "estudiante",
             fetch = FetchType.LAZY
     )
-    private List<GrupoEstudianteEntity> grupoEstudiante;
+    private List<GrupoMateriaEstudianteEntity> grupoMateriaEstudiante;
 }

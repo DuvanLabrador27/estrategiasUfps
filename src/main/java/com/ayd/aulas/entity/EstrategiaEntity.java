@@ -30,5 +30,5 @@ public class EstrategiaEntity {
             mappedBy = "estrategia",
             fetch = FetchType.LAZY
     )
-    private List<GrupoEstrategiaEntity> grupoEstrategia;
+    private List<GrupoMateriaEstrategiaEntity> grupoMateriaEstrategia;
 }
