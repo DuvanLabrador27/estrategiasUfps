@@ -1,8 +1,9 @@
 package com.ayd.aulas.service.materia;
 
-import com.ayd.aulas.dto.MateriaResponseDto;
+import com.ayd.aulas.dto.ClaseResponseDto;
+import com.ayd.aulas.dto.MateriaDto;
 
 public interface MateriaServiceConsulta {
 
-    MateriaResponseDto ejecutar(String nombre);
+    MateriaDto ejecutar(String nombre);
 }

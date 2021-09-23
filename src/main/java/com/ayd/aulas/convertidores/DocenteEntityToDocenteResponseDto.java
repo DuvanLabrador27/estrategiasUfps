@@ -18,9 +18,6 @@ public class DocenteEntityToDocenteResponseDto {
         responseDto.setNombre(entity.getNombre());
         responseDto.setContrasena(entity.getContrasena());
         responseDto.setCorreo(entity.getCorreo());
-        entity.getGrupos().forEach(
-                grupoE -> responseDto.getGrupos().add(grupoE.getId())
-        );
         return responseDto;
     }
 }

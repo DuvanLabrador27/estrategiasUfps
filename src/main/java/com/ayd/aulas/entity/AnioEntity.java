@@ -1,8 +1,9 @@
 package com.ayd.aulas.entity;
 
 import com.ayd.aulas.entity.intermedias.ClaseEntity;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,22 +15,26 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
-@Data
 @Entity
-@Table(name = "grupo")
-@ToString
-public class GrupoEntity {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "anio")
+public class AnioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(
-            mappedBy = "grupo",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
+            mappedBy = "anio",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
     )
     private List<ClaseEntity> anioGrupos;
 
-    private String nombre;
+    private int anio;
+    private int semestre;
+
+
 }

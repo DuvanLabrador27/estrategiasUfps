@@ -1,9 +1,12 @@
 package com.ayd.aulas.service.materia.impl;
 
-import com.ayd.aulas.convertidores.MateriaEntityToMateriaResponseDto;
+import com.ayd.aulas.convertidores.MateriaEntityToMateriaDto;
+import com.ayd.aulas.dao.ClaseDao;
 import com.ayd.aulas.dao.MateriaDao;
-import com.ayd.aulas.dto.MateriaResponseDto;
+import com.ayd.aulas.dto.ClaseResponseDto;
+import com.ayd.aulas.dto.MateriaDto;
 import com.ayd.aulas.entity.MateriaEntity;
+import com.ayd.aulas.entity.intermedias.ClaseEntity;
 import com.ayd.aulas.service.materia.MateriaServiceListar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,16 +21,20 @@ public class MateriaServiceListarImpl implements MateriaServiceListar {
     private MateriaDao materiaDao;
 
     @Autowired
-    private MateriaEntityToMateriaResponseDto toAulaResponseDto;
+    private MateriaEntityToMateriaDto toAulaResponseDto;
 
     @Override
-    public List<MateriaResponseDto> ejecutar() {
-        List<MateriaResponseDto> aulaDtos = new ArrayList<>();
-        for (MateriaEntity materiaEntity : materiaDao.findAll()) {
-            aulaDtos.add(
-                    toAulaResponseDto.entityToResponseDto(materiaEntity)
-            );
-        }
-        return aulaDtos;
+    public List<MateriaDto> ejecutar() {
+        List<MateriaEntity> materias = materiaDao.findAll();
+        List<MateriaDto> responseDtoList = new ArrayList<>();
+        materias.forEach(
+                materiaEn -> responseDtoList.add(
+                        MateriaDto.builder()
+                                .id(materiaEn.getId())
+                                .nombre(materiaEn.getNombre())
+                                .build()
+                )
+        );
+        return responseDtoList;
     }
 }

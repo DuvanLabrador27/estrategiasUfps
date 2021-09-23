@@ -1,10 +1,10 @@
 package com.ayd.aulas.service.materia;
 
-import com.ayd.aulas.dto.MateriaResponseDto;
+import com.ayd.aulas.dto.MateriaDto;
 
 import java.util.List;
 
 public interface MateriaServiceListar {
 
-    List<MateriaResponseDto> ejecutar();
+    List<MateriaDto> ejecutar();
 }

@@ -17,13 +17,7 @@ public class GrupoEntityToGrupoResponseDto {
         dto.setEstudiantes(new ArrayList<>());
 
         List<Long> materiaDtos = new ArrayList<>();
-
         dto.setMaterias(materiaDtos);
-
-        dto.setDocente(Objects.nonNull(entity.getDocente())?entity.getDocente().getId() : 0);
-
-
-
         dto.setId(entity.getId());
         dto.setNombre(entity.getNombre());
         return dto;

@@ -1,8 +1,8 @@
 package com.ayd.aulas.service.materia;
 
-import com.ayd.aulas.dto.MateriaResponseDto;
+import com.ayd.aulas.dto.MateriaDto;
 
 public interface MateriaServiceCrear {
 
-    Long ejecutar(MateriaResponseDto aulaEntity);
+    MateriaDto ejecutar(MateriaDto aulaEntity);
 }

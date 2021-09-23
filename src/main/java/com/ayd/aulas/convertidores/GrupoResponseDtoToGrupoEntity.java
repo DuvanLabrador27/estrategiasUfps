@@ -50,13 +50,7 @@ public class GrupoResponseDtoToGrupoEntity {
         } else {
 
         }
-        if (responseDto.getDocente() > 0) {
-            entity.setDocente(docenteDao.findById(responseDto.getDocente()).orElseThrow(
-                    () -> new ExcepcionSinDatos("No se encontro al docente")
-            ));
-        } else {
-            entity.setDocente(null);
-        }
+
         if (responseDto.getEstudiantes().size() > 0) {
             responseDto.getEstudiantes().forEach(
                     estudiante -> estudianteEntities.add(
