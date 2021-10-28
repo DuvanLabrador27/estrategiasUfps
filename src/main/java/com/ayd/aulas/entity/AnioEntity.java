@@ -4,6 +4,7 @@ import com.ayd.aulas.entity.intermedias.ClaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -31,6 +32,7 @@ public class AnioEntity {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
+    @ToString.Exclude
     private List<ClaseEntity> anioGrupos;
 
     private int anio;

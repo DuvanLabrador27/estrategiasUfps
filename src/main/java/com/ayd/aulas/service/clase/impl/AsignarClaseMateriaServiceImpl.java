@@ -12,6 +12,7 @@ import com.ayd.aulas.entity.DocenteEntity;
 import com.ayd.aulas.entity.GrupoEntity;
 import com.ayd.aulas.entity.MateriaEntity;
 import com.ayd.aulas.entity.intermedias.ClaseEntity;
+import com.ayd.aulas.excepcion.ExcepcionDuplicidad;
 import com.ayd.aulas.excepcion.ExcepcionSinDatos;
 import com.ayd.aulas.service.clase.AsignarClaseMateriaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,35 +41,49 @@ public class AsignarClaseMateriaServiceImpl implements AsignarClaseMateriaServic
 
     @Override
     public ClaseResponseDto ejecutar(ClaseRequestDto requestDto) {
-        ClaseEntity anioGrupo = new ClaseEntity(
+        ClaseEntity claseEnti = new ClaseEntity(
                 0l,
                 validarAnio(requestDto.getFecha()),
                 existeGrupos(requestDto.getGrupo()),
                 existeDocente(requestDto.getDocente()),
                 existeMateria(requestDto.getMateria())
         );
-        Long id = claseDao.save(anioGrupo).getId();
+        existo(claseEnti);
+        Long id = claseDao.save(claseEnti).getId();
         return ClaseResponseDto.builder()
                 .clase(id)
-                .docente(anioGrupo.getDocente().getNombre() + " " + anioGrupo.getDocente().getApellido())
-                .grupo(anioGrupo.getGrupo().getNombre())
-                .materia(anioGrupo.getMateria().getNombre())
-                .periodo(anioGrupo.getAnio().getAnio() + "-" + anioGrupo.getAnio().getSemestre())
+                .docente(
+                        Objects.nonNull(claseEnti.getDocente()) ?
+                                claseEnti.getDocente().getNombre() + " " + claseEnti.getDocente().getApellido() : "Sin Asignar"
+                )
+                .grupo(claseEnti.getGrupo().getNombre())
+                .materia(claseEnti.getMateria().getNombre())
+                .periodo(claseEnti.getAnio().getAnio() + "-" + claseEnti.getAnio().getSemestre())
                 .build();
     }
 
+    private void existo(ClaseEntity claseEntity) {
+        Long materia = claseEntity.getMateria().getId();
+        Long grupo = claseEntity.getGrupo().getId();
+        Long anio = claseEntity.getAnio().getId();
+
+        boolean existo = claseDao.findByAnioIdAndGrupoIdAndMateriaId(anio, grupo, materia).isPresent();
+        if(existo) {
+            throw new ExcepcionDuplicidad("La clase " + claseEntity.getGrupo().getNombre() +
+                    " de la materia " + claseEntity.getMateria().getNombre() + " ya existe.");
+        }
+    }
+
     private MateriaEntity existeMateria(Long id) {
-        MateriaEntity materia = materiaDao.findById(id).orElseThrow(
+        return materiaDao.findById(id).orElseThrow(
                 () -> new ExcepcionSinDatos("La materia no existe")
         );
-        return materia;
     }
 
     private GrupoEntity existeGrupos(Long grupo) {
-        GrupoEntity grupoEn = grupoDao.findById(grupo).orElseThrow(
+        return grupoDao.findById(grupo).orElseThrow(
                 () -> new ExcepcionSinDatos("El grupo '" + grupo + "' no existe. ")
         );
-        return grupoEn;
     }
 
     private DocenteEntity existeDocente(Long idDocente) {
@@ -87,7 +102,7 @@ public class AsignarClaseMateriaServiceImpl implements AsignarClaseMateriaServic
         AnioEntity anioEntity = anioDao.findByAnioAndSemestre(year, semestre).orElse(
                 new AnioEntity(0l, null, year, semestre)
         );
-        if (Objects.equals(anioEntity.getId(), 0)) {
+        if (Objects.equals(anioEntity.getId(), 0l)) {
             anioEntity.setId(
                     anioDao.save(anioEntity).getId()
             );

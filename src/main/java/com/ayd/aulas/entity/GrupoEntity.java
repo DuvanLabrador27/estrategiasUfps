@@ -29,6 +29,7 @@ public class GrupoEntity {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
+    @ToString.Exclude
     private List<ClaseEntity> anioGrupos;
 
     private String nombre;
