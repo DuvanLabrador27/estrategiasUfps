@@ -1,5 +1,6 @@
 package com.ayd.aulas.entity;
 
+import com.ayd.aulas.entity.intermedias.ClaseEntity;
 import lombok.Data;
 import lombok.ToString;
 
@@ -9,8 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -23,35 +23,14 @@ public class GrupoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre;
 
-
-    @ManyToOne()
-    @ToString.Exclude
-    private DocenteEntity docente;
-
-    @ManyToMany(
+    @OneToMany(
+            mappedBy = "grupo",
             fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            mappedBy = "grupos"
+            cascade = CascadeType.ALL
     )
     @ToString.Exclude
-    private List<EstudianteEntity> estudiantes;
+    private List<ClaseEntity> anioGrupos;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            mappedBy = "grupos")
-    @ToString.Exclude
-    private List<MateriaEntity> materias;
-
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            mappedBy = "grupos")
-    @ToString.Exclude
-    private List<EstrategiaEntity> estrategias;
-
-//    @Override
-//    public String toString() {
-//        return "GrupoEntity{}";
-//    }
+    private String nombre;
 }

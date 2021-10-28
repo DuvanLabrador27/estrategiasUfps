@@ -1,8 +1,8 @@
 package com.ayd.aulas.service.materia.impl;
 
-import com.ayd.aulas.convertidores.MateriaEntityToMateriaResponseDto;
+import com.ayd.aulas.convertidores.MateriaEntityToMateriaDto;
 import com.ayd.aulas.dao.MateriaDao;
-import com.ayd.aulas.dto.MateriaResponseDto;
+import com.ayd.aulas.dto.MateriaDto;
 import com.ayd.aulas.entity.MateriaEntity;
 import com.ayd.aulas.excepcion.ExcepcionSinDatos;
 import com.ayd.aulas.service.materia.MateriaServiceConsulta;
@@ -16,12 +16,15 @@ public class MateriaServiceConsultaImpl implements MateriaServiceConsulta {
     private MateriaDao materiaDao;
 
     @Autowired
-    private MateriaEntityToMateriaResponseDto toAulaResponseDto;
+    private MateriaEntityToMateriaDto toAulaResponseDto;
 
-    public MateriaResponseDto ejecutar(String nombre) {
+    public MateriaDto ejecutar(String nombre) {
         MateriaEntity materiaEntity = materiaDao.findByNombre(nombre).orElseThrow(
                 () -> new ExcepcionSinDatos("El aula" + nombre + "no existe")
         );
-        return toAulaResponseDto.entityToResponseDto(materiaEntity);
+        return MateriaDto.builder()
+                .id(materiaEntity.getId())
+                .nombre(materiaEntity.getNombre())
+                .build();
     }
 }

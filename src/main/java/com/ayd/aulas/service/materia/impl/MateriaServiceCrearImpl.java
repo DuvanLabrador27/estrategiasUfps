@@ -1,8 +1,8 @@
 package com.ayd.aulas.service.materia.impl;
 
-import com.ayd.aulas.convertidores.MateriaResponseDtoToMateriaEntity;
+import com.ayd.aulas.convertidores.MateriaDtoToMateriaEntity;
 import com.ayd.aulas.dao.MateriaDao;
-import com.ayd.aulas.dto.MateriaResponseDto;
+import com.ayd.aulas.dto.MateriaDto;
 import com.ayd.aulas.entity.MateriaEntity;
 import com.ayd.aulas.excepcion.ExcepcionSinDatos;
 import com.ayd.aulas.service.materia.MateriaServiceCrear;
@@ -18,13 +18,17 @@ public class MateriaServiceCrearImpl implements MateriaServiceCrear {
     private MateriaDao materiaDao;
 
     @Autowired
-    private MateriaResponseDtoToMateriaEntity materiaResponseDtoToMateriaEntity;
+    private MateriaDtoToMateriaEntity materiaDtoToMateriaEntity;
 
     @Override
-    public Long ejecutar(MateriaResponseDto aulaDto) {
-        existe(aulaDto.getNombre());
-        MateriaEntity materiaEntity = materiaResponseDtoToMateriaEntity.dtoResponseToEntity(aulaDto);
-        return materiaDao.save(materiaEntity).getId();
+    public MateriaDto ejecutar(MateriaDto requestDto) {
+        existe(requestDto.getNombre());
+        MateriaEntity materiaEntity = materiaDtoToMateriaEntity.dtoResponseToEntity(requestDto);
+        materiaEntity = materiaDao.save(materiaEntity);
+        return MateriaDto.builder()
+                .id(materiaEntity.getId())
+                .nombre(materiaEntity.getNombre())
+                .build();
     }
 
     private void existe(String nombre){

@@ -39,8 +39,8 @@ public class DocenteServiceModificarImpl implements DocenteServiceModificar {
         docenteDao.findById(id).orElseThrow(
                 () -> new ExcepcionSinDatos("no existe el docente")
         );
+
+
     }
 
-
-    
 }

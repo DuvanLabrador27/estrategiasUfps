@@ -38,60 +38,60 @@ public class GrupoServiceActualizarImpl implements GrupoServiceActualizar {
     }
 
     private void sincronizarDatos(GrupoEntity grupoEntity) {
-        grupoEntity.getMaterias().forEach(
-                materia -> {
-                    if (materia.getGrupos().size() > 0) {
-                        List<GrupoEntity> aux = new ArrayList<>(materia.getGrupos());
-                        materia.getGrupos().clear();
-                        aux.forEach(
-                                au -> {
-                                    if (au.getId() != grupoEntity.getId()) {
-                                        materia.getGrupos().add(au);
-                                    }
-                                    materia.getGrupos().add(grupoEntity);
-                                }
-                        );
-                    } else {
-                        materia.getGrupos().add(grupoEntity);
-                    }
-                }
-        );
-        grupoEntity.getEstudiantes().forEach(
-                estudiante -> {
-                    if (estudiante.getGrupos().size() > 0) {
-                        List<GrupoEntity> aux = new ArrayList<>(estudiante.getGrupos());
-                        estudiante.getGrupos().clear();
-                        aux.forEach(
-                                au -> {
-                                    if (au.getId() != grupoEntity.getId()) {
-                                        estudiante.getGrupos().add(au);
-                                    }
-                                    estudiante.getGrupos().add(grupoEntity);
-                                }
-                        );
-                    }else {
-                        estudiante.getGrupos().add(grupoEntity);
-                    }
-                }
-
-        );
-        grupoEntity.getEstrategias().forEach(
-                estrategia -> {
-                    if (estrategia.getGrupos().size() > 0) {
-                        List<GrupoEntity> aux = new ArrayList<>(estrategia.getGrupos());
-                        estrategia.getGrupos().clear();
-                        aux.forEach(
-                                au -> {
-                                    if (au.getId() != grupoEntity.getId()) {
-                                        estrategia.getGrupos().add(au);
-                                    }
-                                    estrategia.getGrupos().add(grupoEntity);
-                                }
-                        );
-                    }else {
-                        estrategia.getGrupos().add(grupoEntity);
-                    }
-                }
-        );
+//        grupoEntity.getMaterias().forEach(
+//                materia -> {
+//                    if (materia.getGrupos().size() > 0) {
+//                        List<GrupoEntity> aux = new ArrayList<>(materia.getGrupos());
+//                        materia.getGrupos().clear();
+//                        aux.forEach(
+//                                au -> {
+//                                    if (au.getId() != grupoEntity.getId()) {
+//                                        materia.getGrupos().add(au);
+//                                    }
+//                                    materia.getGrupos().add(grupoEntity);
+//                                }
+//                        );
+//                    } else {
+//                        materia.getGrupos().add(grupoEntity);
+//                    }
+//                }
+//        );
+//        grupoEntity.getEstudiantes().forEach(
+//                estudiante -> {
+//                    if (estudiante.getGrupos().size() > 0) {
+//                        List<GrupoEntity> aux = new ArrayList<>(estudiante.getGrupos());
+//                        estudiante.getGrupos().clear();
+//                        aux.forEach(
+//                                au -> {
+//                                    if (au.getId() != grupoEntity.getId()) {
+//                                        estudiante.getGrupos().add(au);
+//                                    }
+//                                    estudiante.getGrupos().add(grupoEntity);
+//                                }
+//                        );
+//                    }else {
+//                        estudiante.getGrupos().add(grupoEntity);
+//                    }
+//                }
+//
+//        );
+//        grupoEntity.getEstrategias().forEach(
+//                estrategia -> {
+//                    if (estrategia.getGrupos().size() > 0) {
+//                        List<GrupoEntity> aux = new ArrayList<>(estrategia.getGrupos());
+//                        estrategia.getGrupos().clear();
+//                        aux.forEach(
+//                                au -> {
+//                                    if (au.getId() != grupoEntity.getId()) {
+//                                        estrategia.getGrupos().add(au);
+//                                    }
+//                                    estrategia.getGrupos().add(grupoEntity);
+//                                }
+//                        );
+//                    }else {
+//                        estrategia.getGrupos().add(grupoEntity);
+//                    }
+//                }
+//        );
     }
 }

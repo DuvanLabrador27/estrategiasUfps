@@ -25,14 +25,13 @@ public class EstudianteResponseDtoToEstudianteEntity {
         entity.setId(responseDto.getId());
         entity.setNombre(responseDto.getNombre());
         entity.setRepitente(responseDto.isRepitente());
-        entity.setGrupos(new ArrayList<>());
         responseDto.getGrupos().forEach(
                 grupo -> {
                     if (grupo > 0) {
                         GrupoEntity grupoEntity = grupoDao.findById(grupo).orElseThrow(
                                 () -> new ExcepcionSinDatos("No encontramos el grupo '" + grupo + "'.")
                         );
-                        entity.getGrupos().add(grupoEntity);
+
                     }
                 }
         );
