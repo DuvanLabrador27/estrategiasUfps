@@ -4,6 +4,8 @@ import com.ayd.aulas.dao.ClaseDao;
 import com.ayd.aulas.dao.ClaseEstrategiaDao;
 import com.ayd.aulas.dao.EstrategiaDao;
 import com.ayd.aulas.dto.ClaseEstrategiaDto;
+import com.ayd.aulas.entity.EstrategiaEntity;
+import com.ayd.aulas.entity.intermedias.ClaseEntity;
 import com.ayd.aulas.entity.intermedias.ClaseEstrategiaEntity;
 import com.ayd.aulas.excepcion.ExcepcionSinDatos;
 import com.ayd.aulas.service.clase.AsignarEstrategiaClaseService;
@@ -24,24 +26,27 @@ public class AsignarEsttrategiaClaseServiceImpl implements AsignarEstrategiaClas
 
     @Override
     public void ejecutar(ClaseEstrategiaDto estrategiaDto) {
-        existeClase(estrategiaDto.getClase());
-        existeEstrategia(estrategiaDto.getEstrategia());
+        ClaseEntity claseEn = existeClase(estrategiaDto.getClase());
+        EstrategiaEntity estrategiaEn = existeEstrategia(estrategiaDto.getEstrategia());
         ClaseEstrategiaEntity entity = new ClaseEstrategiaEntity();
+
         entity.setId(estrategiaDto.getClase());
         entity.setEstado(estrategiaDto.getEstado());
         entity.setFechaFin(estrategiaDto.getFechaFin());
         entity.setFechaIncio(estrategiaDto.getFechaIncio());
+        entity.setClase(claseEn);
+        entity.setEstrategia(estrategiaEn);
         claseEstrategiaDao.save(entity);
     }
 
-    private void existeClase(Long clase) {
-        claseDao.findById(clase).orElseThrow(
+    private ClaseEntity existeClase(Long clase) {
+        return claseDao.findById(clase).orElseThrow(
                 () -> new ExcepcionSinDatos("No se encontro la clase")
         );
     }
 
-    private void existeEstrategia(Long estrategia) {
-        estrategiaDao.findById(estrategia).orElseThrow(
+    private EstrategiaEntity existeEstrategia(Long estrategia) {
+        return estrategiaDao.findById(estrategia).orElseThrow(
                 () -> new ExcepcionSinDatos("No se encontro la estrategia")
         );
     }

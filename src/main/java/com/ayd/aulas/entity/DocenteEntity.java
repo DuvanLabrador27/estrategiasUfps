@@ -2,6 +2,7 @@ package com.ayd.aulas.entity;
 
 import com.ayd.aulas.entity.intermedias.ClaseEntity;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ public class DocenteEntity {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
+    @ToString.Exclude
     private List<ClaseEntity> anioGrupos;
 
     @Column(name = "fecha_creacion")

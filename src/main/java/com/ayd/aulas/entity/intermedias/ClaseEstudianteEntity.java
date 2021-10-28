@@ -30,5 +30,5 @@ public class ClaseEstudianteEntity {
 
     @ManyToOne
     @ToStringPlugin.Exclude
-    private ClaseEntity anioGrupo;
+    private ClaseEntity clase;
 }

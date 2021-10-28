@@ -1,6 +1,7 @@
 package com.ayd.aulas.dto;
 
 import lombok.Data;
+import org.springframework.lang.NonNull;
 
 import java.time.LocalDateTime;
 
@@ -12,5 +13,6 @@ public class ClaseRequestDto {
     private String nombre;
     private Long grupo;
     private Long docente;
+    private Long estudiante;
     private LocalDateTime fecha;
 }

@@ -31,7 +31,7 @@ public class ClaseEstrategiaEntity {
 
     @ManyToOne
     @ToStringPlugin.Exclude
-    private ClaseEntity anioGrupo;
+    private ClaseEntity clase;
 
     private LocalDateTime fechaIncio;
     private LocalDateTime fechaFin;

@@ -2,6 +2,7 @@ package com.ayd.aulas.entity;
 
 import com.ayd.aulas.entity.intermedias.ClaseEstudianteEntity;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -25,6 +26,7 @@ public class EstudianteEntity {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
+    @ToString.Exclude
     private List<ClaseEstudianteEntity> anioGrupoEstudiantes;
 
     private String nombre;
