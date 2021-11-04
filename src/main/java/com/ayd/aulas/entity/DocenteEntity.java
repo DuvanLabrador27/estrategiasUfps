@@ -33,6 +33,8 @@ public class DocenteEntity {
     private String apellido;
     private String correo;
     private String contrasena;
+    private String username;
+    private String password;
 
 
 
