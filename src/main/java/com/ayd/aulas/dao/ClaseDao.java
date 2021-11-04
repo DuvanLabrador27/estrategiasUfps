@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface ClaseDao extends JpaRepository<ClaseEntity, Long> {
 
     Optional<ClaseEntity> findByAnioIdAndGrupoIdAndMateriaId(Long anio, Long grupo, Long materia);
+
+
 }

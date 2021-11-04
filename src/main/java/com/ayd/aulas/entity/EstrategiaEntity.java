@@ -2,6 +2,7 @@ package com.ayd.aulas.entity;
 
 import com.ayd.aulas.entity.intermedias.ClaseEstrategiaEntity;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -34,7 +35,8 @@ public class EstrategiaEntity {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
-    private List<ClaseEstrategiaEntity> anioGrupoEstrategias;
+    @ToString.Exclude
+    private List<ClaseEstrategiaEntity> claseEstrategias;
 
     private Date creacion;
     private String descripcion;
