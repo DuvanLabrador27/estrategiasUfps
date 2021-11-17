@@ -40,6 +40,4 @@ public class EstudianteServiceCrearImpl implements EstudianteServiceCrear {
             throw new ExcepcionDuplicidad("El estudiante ya existe");
         }
     }
-
-
 }

@@ -3,13 +3,9 @@ package com.ayd.aulas.convertidores;
 import com.ayd.aulas.dao.GrupoDao;
 import com.ayd.aulas.dto.EstudianteResponseDto;
 import com.ayd.aulas.entity.EstudianteEntity;
-import com.ayd.aulas.entity.GrupoEntity;
 import com.ayd.aulas.excepcion.ExcepcionSinDatos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class EstudianteResponseDtoToEstudianteEntity {
@@ -25,16 +21,13 @@ public class EstudianteResponseDtoToEstudianteEntity {
         entity.setId(responseDto.getId());
         entity.setNombre(responseDto.getNombre());
         entity.setRepitente(responseDto.isRepitente());
-        responseDto.getGrupos().forEach(
-                grupo -> {
-                    if (grupo > 0) {
-                        GrupoEntity grupoEntity = grupoDao.findById(grupo).orElseThrow(
-                                () -> new ExcepcionSinDatos("No encontramos el grupo '" + grupo + "'.")
-                        );
+        responseDto.getGrupos().forEach(grupo -> {
+            if (grupo > 0) {
+                grupoDao.findById(grupo)
+                        .orElseThrow(() -> new ExcepcionSinDatos("No encontramos el grupo '" + grupo + "'."));
 
-                    }
-                }
-        );
+            }
+        });
         return entity;
     }
 }

@@ -1,7 +1,6 @@
 package com.ayd.aulas.controller;
 
 import com.ayd.aulas.dto.ClaseRequestDto;
-import com.ayd.aulas.dto.ClaseResponseDto;
 import com.ayd.aulas.dto.MateriaDto;
 import com.ayd.aulas.service.clase.AsignarDocenteClaseMateriaService;
 import com.ayd.aulas.service.materia.*;

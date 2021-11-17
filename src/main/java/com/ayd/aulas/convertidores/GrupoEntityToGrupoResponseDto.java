@@ -1,13 +1,10 @@
 package com.ayd.aulas.convertidores;
 
 import com.ayd.aulas.dto.GrupoResponseDto;
-import com.ayd.aulas.dto.MateriaDto;
 import com.ayd.aulas.entity.GrupoEntity;
-import com.ayd.aulas.entity.MateriaEntity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class GrupoEntityToGrupoResponseDto {
 

@@ -1,6 +1,5 @@
 package com.ayd.aulas.controller;
 
-import com.ayd.aulas.dto.GrupoDto;
 import com.ayd.aulas.dto.GrupoResponseDto;
 import com.ayd.aulas.service.grupo.GrupoServiceActualizar;
 import com.ayd.aulas.service.grupo.GrupoServiceCrear;

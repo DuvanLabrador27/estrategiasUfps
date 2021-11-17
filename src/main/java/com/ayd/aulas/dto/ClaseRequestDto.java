@@ -1,7 +1,6 @@
 package com.ayd.aulas.dto;
 
 import lombok.Data;
-import org.springframework.lang.NonNull;
 
 import java.time.LocalDateTime;
 
