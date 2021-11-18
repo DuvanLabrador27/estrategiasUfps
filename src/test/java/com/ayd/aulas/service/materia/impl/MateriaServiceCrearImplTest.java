@@ -5,20 +5,17 @@ import com.ayd.aulas.dao.MateriaDao;
 import com.ayd.aulas.dto.MateriaDto;
 import com.ayd.aulas.entity.MateriaEntity;
 import com.ayd.aulas.entity.intermedias.ClaseEntity;
-import com.mysql.cj.result.LocalDateTimeValueFactory;
-import org.hibernate.type.LocalDateTimeType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class MateriaServiceCrearImplTest {
 
