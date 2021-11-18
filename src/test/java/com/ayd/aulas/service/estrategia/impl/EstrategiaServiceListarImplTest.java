@@ -1,25 +1,27 @@
 package com.ayd.aulas.service.estrategia.impl;
 
-import com.ayd.aulas.convertidores.EstrategiaEntityToEstrategiaResponseDto;
 import com.ayd.aulas.dao.EstrategiaDao;
-import com.ayd.aulas.dao.EstudianteDao;
 import com.ayd.aulas.dto.EstrategiaDto;
 import com.ayd.aulas.dto.EstrategiaResponseDto;
-import com.ayd.aulas.dto.EstudianteResponseDto;
 import com.ayd.aulas.entity.EstrategiaEntity;
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-class EstrategiaServiceBuscarNombreImplTest {
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class EstrategiaServiceListarImplTest {
 
     private EstrategiaEntity estrategiaEntity;
     private EstrategiaDto estrategiaDto;
     private EstrategiaResponseDto estrategiaResponseDto;
+    private List<EstrategiaResponseDto> estrategiaResponseDtos;
+    private List<EstrategiaEntity> estrategiaEntities;
 
     @BeforeEach
     void setUp() {
@@ -35,22 +37,19 @@ class EstrategiaServiceBuscarNombreImplTest {
         estrategiaResponseDto.setNombre("PRUEBA");
         estrategiaResponseDto.setDescripcion("UNITARIAS");
         estrategiaResponseDto.setId(1l);
+
+        estrategiaResponseDtos = new ArrayList<>();
+        estrategiaResponseDtos.add(estrategiaResponseDto);
+        estrategiaEntities = new ArrayList<>();
+        estrategiaEntities.add(estrategiaEntity);
     }
 
     @Mock
     private EstrategiaDao estrategiaDao;
 
-    @Mock
-    private EstrategiaEntityToEstrategiaResponseDto toEstrategiaResponseDto;
-
-    @InjectMocks
-    private EstrategiaServiceBuscarNombreImpl estrategiaServiceBuscarNombre;
-
     @Test
     void ejecutar() {
-        Mockito.when(estrategiaDao.findByNombre(Mockito.anyString()))
-                .thenReturn(java.util.Optional.ofNullable(estrategiaEntity));
-        Mockito.when(toEstrategiaResponseDto.entityToResonse(estrategiaEntity)).thenReturn(estrategiaResponseDto);
-        Assert.assertNotNull(estrategiaServiceBuscarNombre.ejecutar(estrategiaResponseDto.getNombre()));
+        Mockito.when(estrategiaDao.findAll()).thenReturn(estrategiaEntities);
+
     }
 }
