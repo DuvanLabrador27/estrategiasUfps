@@ -49,7 +49,8 @@ public class AsignarClaseMateriaServiceImpl implements AsignarClaseMateriaServic
                 existeMateria(requestDto.getMateria())
         );
         existo(claseEnti);
-        Long id = claseDao.save(claseEnti).getId();
+        ClaseEntity ce = claseDao.save(claseEnti);
+        Long id = ce.getId();
         return ClaseResponseDto.builder()
                 .clase(id)
                 .docente(

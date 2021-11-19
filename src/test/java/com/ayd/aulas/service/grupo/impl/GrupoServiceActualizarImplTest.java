@@ -37,6 +37,5 @@ class GrupoServiceActualizarImplTest {
                 java.util.Optional.ofNullable(grupoEntity)
         );
         Mockito.when(grupoDao.save(Mockito.any())).thenReturn(grupoEntity);
-//        Assert.assert(grupoServiceActualizar.ejecutar(grupoResponseDto));
     }
 }

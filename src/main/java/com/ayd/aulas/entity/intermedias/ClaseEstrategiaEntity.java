@@ -4,7 +4,7 @@ import com.ayd.aulas.entity.EstrategiaEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.bytebuddy.build.ToStringPlugin;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,11 +26,11 @@ public class ClaseEstrategiaEntity {
     private Long id;
 
     @ManyToOne
-    @ToStringPlugin.Exclude
+    @ToString.Exclude
     private EstrategiaEntity estrategia;
 
     @ManyToOne
-    @ToStringPlugin.Exclude
+    @ToString.Exclude
     private ClaseEntity clase;
 
     private LocalDateTime fechaIncio;

@@ -55,7 +55,6 @@ class EstudianteServiceCrearImplTest {
 
     @Test
     void ejecutar() {
-       // Mockito.when(estudianteDao.findByNombre(Mockito.anyString())).thenReturn(null);
         Mockito.when(estudianteDao.save(Mockito.any())).thenReturn(estudianteEntity);
         Assert.assertEquals(estudianteServiceCrear.ejecutar(estudianteResponseDto), estudianteEntity.getId());
     }

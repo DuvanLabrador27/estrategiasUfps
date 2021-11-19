@@ -8,7 +8,7 @@ import com.ayd.aulas.entity.MateriaEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.bytebuddy.build.ToStringPlugin;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,18 +29,18 @@ public class ClaseEntity {
     private Long id;
 
     @ManyToOne
-    @ToStringPlugin.Exclude
+    @ToString.Exclude
     private AnioEntity anio;
 
     @ManyToOne
-    @ToStringPlugin.Exclude
+    @ToString.Exclude
     private GrupoEntity grupo;
 
     @ManyToOne
-    @ToStringPlugin.Exclude
+    @ToString.Exclude
     private DocenteEntity docente;
 
     @ManyToOne
-    @ToStringPlugin.Exclude
+    @ToString.Exclude
     private MateriaEntity materia;
 }

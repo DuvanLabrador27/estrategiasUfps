@@ -23,6 +23,7 @@ public class DocenteServiceBuscarNombreImpl implements DocenteServiceBuscarNombr
         DocenteEntity docenteEntity = docenteDao.findByNombre(nombre).orElseThrow(
                 () -> new ExcepcionSinDatos("No se encontro al estudiante '" + nombre + "'.")
         );
-        return toDocenteResponseDto.entityToResponseDto(docenteEntity);
+        DocenteResponseDto response = toDocenteResponseDto.entityToResponseDto(docenteEntity);
+        return response;
     }
 }

@@ -4,7 +4,7 @@ import com.ayd.aulas.entity.EstudianteEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.bytebuddy.build.ToStringPlugin;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,10 +25,10 @@ public class ClaseEstudianteEntity {
     private Long id;
 
     @ManyToOne
-    @ToStringPlugin.Exclude
+    @ToString.Exclude
     private EstudianteEntity estudiante;
 
     @ManyToOne
-    @ToStringPlugin.Exclude
+    @ToString.Exclude
     private ClaseEntity clase;
 }
