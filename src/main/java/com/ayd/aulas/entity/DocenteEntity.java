@@ -29,13 +29,19 @@ public class DocenteEntity {
     @Column(name = "fecha_creacion")
     private LocalDateTime fechaCreacion;
 
+    @Column(length = 30, unique = true)
+    private String username;
+
+    @Column(length = 60)
+    private String password;
+
+    private Boolean enabled;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Role> roles;
+
     private String nombre;
     private String apellido;
     private String correo;
-    private String contrasena;
-    private String username;
-    private String password;
-
-
-
 }

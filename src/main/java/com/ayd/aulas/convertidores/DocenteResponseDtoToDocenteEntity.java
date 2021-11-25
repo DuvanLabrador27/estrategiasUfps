@@ -19,7 +19,7 @@ public class DocenteResponseDtoToDocenteEntity {
     public DocenteEntity repsonseDtoToEntity(DocenteResponseDto responseDto) {
         DocenteEntity entity = new DocenteEntity();
         entity.setApellido(responseDto.getApellido());
-        entity.setContrasena(responseDto.getContrasena());
+        entity.setPassword(responseDto.getContrasena());
         entity.setCorreo(responseDto.getCorreo());
         entity.setId(responseDto.getId());
         entity.setNombre(responseDto.getNombre());
