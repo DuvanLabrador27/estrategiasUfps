@@ -30,6 +30,6 @@ public class DocenteLoginServiceImpl implements DocenteLoginService {
         if (Objects.isNull(docenteEntity)) {
             throw new ExcepcionSinDatos("El docente no existe");
         }
-        return docenteEntity.getContrasena();
+        return docenteEntity.getPassword();
     }
 }
