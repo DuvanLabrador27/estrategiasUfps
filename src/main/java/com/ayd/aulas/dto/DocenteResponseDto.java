@@ -12,5 +12,6 @@ public class DocenteResponseDto {
     private String apellido;
     private String correo;
     private String contrasena;
+    private boolean enabled;
     private List<Long> grupos;
 }

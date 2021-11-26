@@ -26,10 +26,10 @@ public class DocenteLoginServiceImpl implements DocenteLoginService {
     }
 
     private String exito(String correo) {
-        DocenteEntity docenteEntity = docenteDao.findByCorreo(correo).orElse(null);
+        DocenteEntity docenteEntity = docenteDao.findByUsername(correo).orElse(null);
         if (Objects.isNull(docenteEntity)) {
             throw new ExcepcionSinDatos("El docente no existe");
         }
-        return docenteEntity.getContrasena();
+        return docenteEntity.getPassword();
     }
 }

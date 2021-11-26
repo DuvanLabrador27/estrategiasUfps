@@ -11,5 +11,5 @@ public interface DocenteDao extends JpaRepository<DocenteEntity, Long> {
 
     Optional<DocenteEntity> findByNombre(String nombre);
 
-    Optional<DocenteEntity> findByCorreo(String correo);
+    Optional<DocenteEntity> findByUsername(String correo);
 }

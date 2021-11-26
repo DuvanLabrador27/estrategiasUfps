@@ -8,6 +8,7 @@ import com.ayd.aulas.excepcion.ExcepcionSinDatos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @Component
@@ -19,11 +20,12 @@ public class DocenteResponseDtoToDocenteEntity {
     public DocenteEntity repsonseDtoToEntity(DocenteResponseDto responseDto) {
         DocenteEntity entity = new DocenteEntity();
         entity.setApellido(responseDto.getApellido());
-        entity.setContrasena(responseDto.getContrasena());
-        entity.setCorreo(responseDto.getCorreo());
+        entity.setPassword(responseDto.getContrasena());
+        entity.setUsername(responseDto.getCorreo());
         entity.setId(responseDto.getId());
         entity.setNombre(responseDto.getNombre());
-
+        entity.setFechaCreacion(LocalDateTime.now());
+        entity.setEnabled(responseDto.isEnabled());
         return entity;
     }
 }
