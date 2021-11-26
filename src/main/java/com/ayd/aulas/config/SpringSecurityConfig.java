@@ -17,11 +17,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	/*
-	 * @Autowired
-	private LoginSuccessHandler successHandler;
-	*/
-
     @Autowired
     private JpaUserDetailsService userDetailsService;
 
@@ -33,7 +28,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
+        /*.antMatchers("/ver/**").hasAnyRole("USER")*/
+        /*.antMatchers("/uploads/**").hasAnyRole("USER")*/
+        /*.antMatchers("/form/**").hasAnyRole("ADMIN")*/
+        /*.antMatchers("/eliminar/**").hasAnyRole("ADMIN")*/
+        /*.antMatchers("/factura/**").hasAnyRole("ADMIN")*/
         http.authorizeRequests().antMatchers().permitAll()
                 .anyRequest().authenticated()
                 .and()
