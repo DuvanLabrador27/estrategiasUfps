@@ -12,6 +12,7 @@ import com.ayd.aulas.excepcion.ExcepcionDuplicidad;
 import com.ayd.aulas.excepcion.ExcepcionSinDatos;
 import com.ayd.aulas.service.docente.DocenteServiceCrear;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,8 +24,6 @@ public class DocenteServiceCrearImpl implements DocenteServiceCrear {
     @Autowired
     private DocenteDao docenteDao;
 
-    @Autowired
-    private GrupoDao grupoDao;
 
     @Autowired
     private DocenteResponseDtoToDocenteEntity toDocenteEntity;
