@@ -3,9 +3,13 @@ package com.ayd.aulas.convertidores;
 import com.ayd.aulas.dao.GrupoDao;
 import com.ayd.aulas.dto.DocenteResponseDto;
 import com.ayd.aulas.entity.DocenteEntity;
+import com.ayd.aulas.entity.GrupoEntity;
+import com.ayd.aulas.excepcion.ExcepcionSinDatos;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Component
 public class DocenteResponseDtoToDocenteEntity {
@@ -13,21 +17,15 @@ public class DocenteResponseDtoToDocenteEntity {
     @Autowired
     private GrupoDao grupoDao;
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
     public DocenteEntity repsonseDtoToEntity(DocenteResponseDto responseDto) {
         DocenteEntity entity = new DocenteEntity();
         entity.setApellido(responseDto.getApellido());
-        entity.setPassword(
-                bCryptPasswordEncoder.encode(
-                        responseDto.getContrasena()
-                )
-        );
-        entity.setCorreo(responseDto.getCorreo());
+        entity.setPassword(responseDto.getContrasena());
+        entity.setUsername(responseDto.getCorreo());
         entity.setId(responseDto.getId());
         entity.setNombre(responseDto.getNombre());
-
+        entity.setFechaCreacion(LocalDateTime.now());
+        entity.setEnabled(responseDto.isEnabled());
         return entity;
     }
 }

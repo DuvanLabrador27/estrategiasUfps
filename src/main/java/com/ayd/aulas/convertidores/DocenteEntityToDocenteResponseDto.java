@@ -17,7 +17,7 @@ public class DocenteEntityToDocenteResponseDto {
         responseDto.setApellido(entity.getApellido());
         responseDto.setNombre(entity.getNombre());
         responseDto.setContrasena(entity.getPassword());
-        responseDto.setCorreo(entity.getCorreo());
+        responseDto.setCorreo(entity.getUsername());
         return responseDto;
     }
 }

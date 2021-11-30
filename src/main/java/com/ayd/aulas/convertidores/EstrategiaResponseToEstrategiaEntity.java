@@ -19,7 +19,6 @@ public class EstrategiaResponseToEstrategiaEntity {
     public EstrategiaEntity responseToEntity(EstrategiaResponseDto responseDto) {
         EstrategiaEntity entity = new EstrategiaEntity();
 
-        entity.setCreacion(responseDto.getCreacion());
         entity.setDescripcion(responseDto.getDescripcion());
         entity.setId(responseDto.getId());
         entity.setNombre(responseDto.getNombre());

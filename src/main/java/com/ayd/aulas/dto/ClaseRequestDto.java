@@ -14,5 +14,5 @@ public class ClaseRequestDto {
     private Long grupo;
     private Long docente;
     private Long estudiante;
-    private LocalDateTime fecha;
+    private String periodo;
 }

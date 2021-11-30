@@ -13,7 +13,6 @@ public class EstrategiaEntityToEstrategiaResponseDto{
         EstrategiaResponseDto responseDto = new EstrategiaResponseDto();
         responseDto.setGrupos(new ArrayList<>());
         responseDto.setId(estrategiaEntity.getId());
-        responseDto.setCreacion(estrategiaEntity.getCreacion());
         responseDto.setDescripcion(estrategiaEntity.getDescripcion());
         responseDto.setNombre(estrategiaEntity.getNombre());
 

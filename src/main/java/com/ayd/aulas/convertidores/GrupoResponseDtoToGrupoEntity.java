@@ -32,48 +32,7 @@ public class GrupoResponseDtoToGrupoEntity {
     private EstudianteDao estudianteDao;
 
     public GrupoEntity responseToEntoty(GrupoResponseDto responseDto) {
-
-
         GrupoEntity entity = new GrupoEntity();
-        List<MateriaEntity> materiaEntities = new ArrayList<>();
-        List<EstudianteEntity> estudianteEntities = new ArrayList<>();
-
-        if (responseDto.getMaterias().size() > 0) {
-            responseDto.getMaterias().forEach(
-                    materia -> materiaEntities.add(
-                            materiaDao.findById(materia).orElseThrow(
-                                    () -> new ExcepcionSinDatos("No se encontro el aula")
-                            )
-                    )
-            );
-
-        } else {
-
-        }
-
-        if (responseDto.getEstudiantes().size() > 0) {
-            responseDto.getEstudiantes().forEach(
-                    estudiante -> estudianteEntities.add(
-                            estudianteDao.findById(estudiante).orElseThrow(
-                                    () -> new ExcepcionSinDatos("No se encontro el estudiante: " + estudiante)
-                            )
-                    )
-            );
-
-        } else {
-
-        }
-
-        responseDto.getEstrategias().forEach(
-                estrategia -> {
-                    if (estrategia > 0) {
-                        EstrategiaEntity estrategiaEntity = estrategiaDao.findById(estrategia).orElseThrow(
-                                () -> new ExcepcionSinDatos("No se encontro la estrategia '" + estrategia + "'.")
-                        );
-
-                    }
-                }
-        );
         entity.setId(responseDto.getId());
         entity.setNombre(responseDto.getNombre());
 
