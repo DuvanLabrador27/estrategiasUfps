@@ -43,7 +43,7 @@ public class AsignarClaseMateriaServiceImpl implements AsignarClaseMateriaServic
     public ClaseResponseDto ejecutar(ClaseRequestDto requestDto) {
         ClaseEntity claseEnti = new ClaseEntity(
                 0l,
-                validarAnio(requestDto.getFecha()),
+                validarAnio(LocalDateTime.now()),
                 existeGrupos(requestDto.getGrupo()),
                 existeDocente(requestDto.getDocente()),
                 existeMateria(requestDto.getMateria())

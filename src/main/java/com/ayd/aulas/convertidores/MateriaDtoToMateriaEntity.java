@@ -7,6 +7,8 @@ import com.ayd.aulas.entity.MateriaEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
 public class MateriaDtoToMateriaEntity {
 
@@ -17,6 +19,7 @@ public class MateriaDtoToMateriaEntity {
         MateriaEntity entity = new MateriaEntity();
         entity.setId(dto.getId());
         entity.setNombre(dto.getNombre());
+        entity.setFechaCreacion(LocalDateTime.now());
         return entity;
     }
 }
