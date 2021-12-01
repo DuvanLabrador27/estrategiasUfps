@@ -18,20 +18,9 @@ public class EstrategiaResponseToEstrategiaEntity {
 
     public EstrategiaEntity responseToEntity(EstrategiaResponseDto responseDto) {
         EstrategiaEntity entity = new EstrategiaEntity();
-
         entity.setDescripcion(responseDto.getDescripcion());
         entity.setId(responseDto.getId());
         entity.setNombre(responseDto.getNombre());
-        responseDto.getGrupos().forEach(
-                idGrupo -> {
-                    if (idGrupo > 0) {
-                        GrupoEntity grupoEntity = grupoDao.findById(idGrupo).orElseThrow(
-                                () -> new ExcepcionSinDatos("No se encontro el grupo ´" + idGrupo + "'.")
-                        );
-
-                    }
-                }
-        );
         return entity;
     }
 }

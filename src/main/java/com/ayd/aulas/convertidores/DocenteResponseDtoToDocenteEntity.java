@@ -17,10 +17,10 @@ public class DocenteResponseDtoToDocenteEntity {
     @Autowired
     private GrupoDao grupoDao;
 
+
     public DocenteEntity repsonseDtoToEntity(DocenteResponseDto responseDto) {
         DocenteEntity entity = new DocenteEntity();
         entity.setApellido(responseDto.getApellido());
-        entity.setPassword(responseDto.getContrasena());
         entity.setUsername(responseDto.getCorreo());
         entity.setId(responseDto.getId());
         entity.setNombre(responseDto.getNombre());
