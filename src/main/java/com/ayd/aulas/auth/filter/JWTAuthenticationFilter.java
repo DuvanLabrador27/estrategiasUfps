@@ -83,7 +83,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			Authentication authResult) throws IOException, ServletException {
 
 		String token = jwtService.create(authResult);
-		
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.addHeader(JWTServiceImpl.HEADER_STRING, JWTServiceImpl.TOKEN_PREFIX + token);
 		
 		Map<String, Object> body = new HashMap<String, Object>();
@@ -99,7 +99,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	@Override
 	protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException failed) throws IOException, ServletException {
-
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		Map<String, Object> body = new HashMap<String, Object>();
 		body.put("mensaje", "Error de autenticación: username o password incorrecto!");
 		body.put("error", failed.getMessage());
