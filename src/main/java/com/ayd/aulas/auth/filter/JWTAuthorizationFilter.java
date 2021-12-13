@@ -30,6 +30,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
 		String header = request.getHeader(JWTServiceImpl.HEADER_STRING);
 		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Headers", "*");
 		if (!requiresAuthentication(header)) {
 			chain.doFilter(request, response);
 			return;
