@@ -12,6 +12,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+
+import java.util.List;
+
 
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @Configuration
@@ -33,7 +37,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         /*.antMatchers("/form/**").hasAnyRole("ADMIN")*/
         /*.antMatchers("/eliminar/**").hasAnyRole("ADMIN")*/
         /*.antMatchers("/factura/**").hasAnyRole("ADMIN")*/
-        http.authorizeRequests()
+        http.cors()
+                .and()
+                .authorizeRequests()
                 .antMatchers("/api/**")
                 .permitAll()
                 .anyRequest().authenticated()
@@ -42,7 +48,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtService))
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
     }
 
     @Autowired
