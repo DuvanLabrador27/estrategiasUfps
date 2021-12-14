@@ -7,6 +7,7 @@ import com.ayd.aulas.dto.ClaseEstrategiaDto;
 import com.ayd.aulas.entity.EstrategiaEntity;
 import com.ayd.aulas.entity.intermedias.ClaseEntity;
 import com.ayd.aulas.entity.intermedias.ClaseEstrategiaEntity;
+import com.ayd.aulas.excepcion.ExcepcionDuplicidad;
 import com.ayd.aulas.excepcion.ExcepcionSinDatos;
 import com.ayd.aulas.service.clase.AsignarEstrategiaClaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,14 @@ public class AsignarEsttrategiaClaseServiceImpl implements AsignarEstrategiaClas
         entity.setFechaIncio(estrategiaDto.getFechaIncio());
         entity.setClase(claseEn);
         entity.setEstrategia(estrategiaEn);
+        boolean existo = claseEstrategiaDao.findByEstrategiaAndClase(
+                entity.getEstrategia().getId(),
+                entity.getClase().getId()
+        ).isPresent();
+        if (existo) {
+            throw new ExcepcionDuplicidad("La estrategia " + estrategiaEn.getNombre()
+                    + " ya esxiste en la clase " + claseEn.getMateria().getNombre() + " - " + claseEn.getGrupo().getNombre() );
+        }
         claseEstrategiaDao.save(entity);
     }
 

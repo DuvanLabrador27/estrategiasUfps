@@ -44,4 +44,6 @@ public class ClaseEntity {
     @ManyToOne
     @ToStringPlugin.Exclude
     private MateriaEntity materia;
+
+
 }

@@ -27,7 +27,7 @@ public class EstudianteEntity {
             fetch = FetchType.LAZY
     )
     @ToString.Exclude
-    private List<ClaseEstudianteEntity> anioGrupoEstudiantes;
+    private List<ClaseEstudianteEntity> claseEstudiantes;
 
     private String nombre;
     private String apellido;

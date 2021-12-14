@@ -7,6 +7,7 @@ import com.ayd.aulas.dto.ClaseRequestDto;
 import com.ayd.aulas.entity.EstudianteEntity;
 import com.ayd.aulas.entity.intermedias.ClaseEntity;
 import com.ayd.aulas.entity.intermedias.ClaseEstudianteEntity;
+import com.ayd.aulas.excepcion.ExcepcionDuplicidad;
 import com.ayd.aulas.excepcion.ExcepcionSinDatos;
 import com.ayd.aulas.service.clase.AsignarEstudianteClaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,13 @@ public class AsignarEstudianteClaseServiceImpl implements AsignarEstudianteClase
         ClaseEstudianteEntity entity = new ClaseEstudianteEntity();
         entity.setClase(claseEn);
         entity.setEstudiante(estudianteEn);
+        boolean existo = claseEstudianteDao.findByEstudianteAndClase(
+                entity.getEstudiante().getId(),
+                entity.getClase().getId()).isPresent();
+        if (existo) {
+            throw new ExcepcionDuplicidad("El alumno " + estudianteEn.getNombre() + " " + estudianteEn.getApellido()
+                    + " ya esxiste en la clase " + claseEn.getMateria().getNombre() + " - " + claseEn.getGrupo().getNombre() );
+        }
         claseEstudianteDao.save(entity);
     }
 

@@ -1,5 +1,9 @@
 package com.ayd.aulas.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +13,8 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "authorities")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Role implements Serializable {
 
     @Id
